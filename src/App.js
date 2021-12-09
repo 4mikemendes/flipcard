@@ -2,21 +2,26 @@
 import './App.css';
 import Card from "./components/Card.js"
 import React, {useState} from 'react';
+import word from "./word.js"
 
 function App() {
-  const [kwestion, setKwestion] = useState({
-    question: true
-  })
 
+  const [word, setWord] = useState({
+    kor: "",
+    eng: ""
+  })
+  const wordElement = word.map(word => (
+    <Card doYouKnow={word.kor} handleClick={toggle}/>
+    ))
   function toggle () {
-    setKwestion(prevkwestion => ({
-      question: !prevkwestion.question
+    setWord(prevWord => ({
+      kor: prevWord.eng 
     }))
   }
   return (
     <div className="App">
-     <Card doYouKnow={kwestion.question} handleClick={toggle}/>
-    </div>
+    {wordElement}  
+  </div>
   );
 }
 
